@@ -1,0 +1,43 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-900">
+    <ActionBar title="App Analyzer" class="bg-gray-800 text-white" />
+    
+    <ListView items="{{ apps }}" class="list-group">
+        <ListView.itemTemplate>
+            <GridLayout rows="auto, auto" columns="60, *" class="p-4 border-b border-gray-700">
+                <Image row="0" col="0" src="{{ icon }}" class="w-12 h-12 rounded-lg" />
+                
+                <StackLayout row="0" col="1" class="ml-4">
+                    <Label text="{{ name }}" class="text-lg font-bold text-white" />
+                    <Label text="{{ packageName }}" class="text-sm text-gray-400" />
+                    <Label text="{{ 'v' + version + ' (' + versionCode + ')' }}" class="text-sm text-gray-500" />
+                </StackLayout>
+                
+                <StackLayout row="1" col="0" colSpan="2" class="mt-2" visibility="{{ isExpanded ? 'visible' : 'collapsed' }}">
+                    <GridLayout columns="auto, *" class="mb-1">
+                        <Label text="Framework:" class="text-gray-400" />
+                        <Label col="1" text="{{ framework }}" class="text-white ml-2" />
+                    </GridLayout>
+                    
+                    <GridLayout columns="auto, *" class="mb-1">
+                        <Label text="Language:" class="text-gray-400" />
+                        <Label col="1" text="{{ language }}" class="text-white ml-2" />
+                    </GridLayout>
+                    
+                    <GridLayout columns="auto, *" class="mb-1">
+                        <Label text="Stability:" class="text-gray-400" />
+                        <Label col="1" text="{{ stability }}" class="text-white ml-2" />
+                    </GridLayout>
+                    
+                    <GridLayout columns="auto, *" class="mb-1" visibility="{{ targetSdk ? 'visible' : 'collapsed' }}">
+                        <Label text="Target SDK:" class="text-gray-400" />
+                        <Label col="1" text="{{ targetSdk }}" class="text-white ml-2" />
+                    </GridLayout>
+                </StackLayout>
+                
+                <GridLayout.tap>
+                    <GridLayout.toggleExpand index="{{ $index }}" />
+                </GridLayout.tap>
+            </GridLayout>
+        </ListView.itemTemplate>
+    </ListView>
+</Page>
